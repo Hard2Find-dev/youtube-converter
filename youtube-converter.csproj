@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>youtube-converter</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishTrimmed>true</PublishTrimmed>
+    <Authors>boucy</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="youtubeexplode" Version="6.3.13" />
+  </ItemGroup>
+</Project>

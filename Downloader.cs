@@ -38,7 +38,7 @@ namespace YouTubeConverter
 
             string sanitizedTitle = string.Join("_", video.Title.Split(Path.GetInvalidFileNameChars()));
 
-            Console.Write($"Downloading {sanitizedTitle}");
+            Console.Write($"\nDownloading {sanitizedTitle}");
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
             var muxedStreams = streamManifest.GetMuxedStreams().OrderByDescending(s => s.VideoQuality).ToList();
 

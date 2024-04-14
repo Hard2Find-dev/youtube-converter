@@ -13,10 +13,11 @@ namespace YouTubeConverter
             {
                 var playlistId = url.Split("list=").Last();
                 var playlist = await youtube.Playlists.GetAsync(playlistId);
-                Console.WriteLine($"\nDownloading From {playlist.Title} Playlist");
+             
 
                 await foreach (var video in youtube.Playlists.GetVideosAsync(playlistId))
                 {
+                       Console.WriteLine($"\nDownloading From {playlist.Title} Playlist");
                     await DownloadYouTubeVideo(video.Url, outputDirectory);
                 }
 
@@ -35,26 +36,44 @@ namespace YouTubeConverter
             var youtube = new YoutubeClient();
             var video = await youtube.Videos.GetAsync(videoUrl);
 
-
             string sanitizedTitle = string.Join("_", video.Title.Split(Path.GetInvalidFileNameChars()));
 
-            Console.Write($"\nDownloading {sanitizedTitle}");
+            Console.WriteLine($"\nDownloading {sanitizedTitle}");
+
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
             var muxedStreams = streamManifest.GetMuxedStreams().OrderByDescending(s => s.VideoQuality).ToList();
 
             if (muxedStreams.Any())
             {
                 var streamInfo = muxedStreams.First();
+
                 using var httpClient = new HttpClient();
-                var stream = await httpClient.GetStreamAsync(streamInfo.Url);
+                using var response = await httpClient.GetAsync(streamInfo.Url, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
 
                 string outputFilePath = Path.Combine(outputDirectory, $"{sanitizedTitle}.{streamInfo.Container}");
-                using var outputStream = File.Create(outputFilePath);
-                await stream.CopyToAsync(outputStream);
+
+                // Create a FileStream to write the video stream to the output file
+                using (var fileStream = File.Create(outputFilePath))
+                {
+                    // Get the content stream from the HTTP response
+                    using var stream = await response.Content.ReadAsStreamAsync();
+
+                    // Buffer to read the stream
+                    byte[] buffer = new byte[8192];
+                    int bytesRead;
+
+                    // Read from the content stream and write to the file stream
+                    while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                    {
+                        await fileStream.WriteAsync(buffer, 0, bytesRead);
+                    }
+                }
 
                 Console.WriteLine("\nDownload completed!");
                 Console.WriteLine($"Video saved as: {outputFilePath}");
 
+                // Now that the download is complete, proceed with the conversion
                 await Converter.ConvertMp4ToMp3(outputFilePath, outputDirectory);
             }
             else

@@ -22,19 +22,41 @@ namespace YouTubeConverter
                 process.StartInfo.RedirectStandardError = true;
 
                 process.Start();
+
+                // Read standard output asynchronously
+                Task<string> outputTask = process.StandardOutput.ReadToEndAsync();
+
+                // Read standard error asynchronously
+                Task<string> errorTask = process.StandardError.ReadToEndAsync();
+
+                // Wait for both output and error to complete
+                await Task.WhenAll(outputTask, errorTask);
+
+                // Log output and error
+                Console.WriteLine("FFmpeg output:");
+                Console.WriteLine(outputTask.Result);
+                Console.WriteLine("FFmpeg error:");
+                Console.WriteLine(errorTask.Result);
+
                 await process.WaitForExitAsync();
+                Console.WriteLine("FFmpeg process completed.");
 
                 Console.WriteLine("Conversion completed!");
                 Console.WriteLine($"MP3 saved as: {outputFilePath}");
 
                 File.Delete(inputFilePath);
                 Console.WriteLine($"Deleted MP4 file: {inputFilePath}");
+
+                Console.WriteLine("\nPress Enter to continue...");
+                Console.ReadLine();
+                Console.Clear();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error during conversion: {ex.Message}");
             }
         }
+
         public static async Task<bool> CheckFFmpegInstallation()
         {
             try

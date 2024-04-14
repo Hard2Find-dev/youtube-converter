@@ -1,14 +1,15 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace YouTubeConverter
 {
     class Program
     {
         static string outputDirectory;
-        static string filePath;
+        static string filePath = "./ascii-Art.txt";
         static async Task Main(string[] args)
         {
-            Console.Clear();
+
             bool isFFmpegInstalled = await Converter.CheckFFmpegInstallation();
 
             if (!isFFmpegInstalled)
@@ -18,14 +19,13 @@ namespace YouTubeConverter
             }
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                filePath = "./usr/local/bin/ascii-Art.txt";
+
                 string username = Environment.UserName;
                 outputDirectory = $"/home/{username}/Music/";
                 Console.WriteLine("Download Folder: " + outputDirectory);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                filePath = "ascii-Art.txt";
                 string profileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 outputDirectory = Path.Combine(profileDirectory, "Music");
                 Console.WriteLine("Download Folder: " + outputDirectory);
@@ -34,14 +34,16 @@ namespace YouTubeConverter
             {
                 throw new NotSupportedException("Unsupported operating system.");
             }
+            string directory = AppDomain.CurrentDomain.BaseDirectory;
 
-            
-
-            string fileContent = File.ReadAllText(filePath);
+            // Combine the directory with the file name to get the full file path
+            string fullPath = Path.Combine(directory, filePath);
+            string fileContent = File.ReadAllText(fullPath);
 
             while (true)
             {
                 Console.Write(fileContent);
+                Console.Write(outputDirectory);
                 Console.Write($"Hard2Find Development Company 2024\n");
                 Console.Write("Enter Music Single/Playlist URL (or type 'exit' to quit): ");
                 string playlistUrl = Console.ReadLine();

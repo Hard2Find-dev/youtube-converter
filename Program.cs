@@ -5,6 +5,7 @@ namespace YouTubeConverter
     class Program
     {
         static string outputDirectory;
+        static string filePath;
         static async Task Main(string[] args)
         {
             Console.Clear();
@@ -17,12 +18,14 @@ namespace YouTubeConverter
             }
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
+                filePath = "./usr/local/bin/ascii-Art.txt";
                 string username = Environment.UserName;
                 outputDirectory = $"/home/{username}/Music/";
                 Console.WriteLine("Download Folder: " + outputDirectory);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
+                filePath = "ascii-Art.txt";
                 string profileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 outputDirectory = Path.Combine(profileDirectory, "Music");
                 Console.WriteLine("Download Folder: " + outputDirectory);
@@ -32,7 +35,7 @@ namespace YouTubeConverter
                 throw new NotSupportedException("Unsupported operating system.");
             }
 
-            string filePath = "/usr/local/bin/ascii-Art.txt";
+            
 
             string fileContent = File.ReadAllText(filePath);
 

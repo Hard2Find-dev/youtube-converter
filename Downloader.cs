@@ -13,7 +13,7 @@ namespace YouTubeConverter
             {
                 var playlistId = url.Split("list=").Last();
                 var playlist = await youtube.Playlists.GetAsync(playlistId);
-                Console.WriteLine($"Downloading From {playlist.Title} Playlist");
+                Console.WriteLine($"\nDownloading From {playlist.Title} Playlist");
 
                 await foreach (var video in youtube.Playlists.GetVideosAsync(playlistId))
                 {
@@ -52,7 +52,7 @@ namespace YouTubeConverter
                 using var outputStream = File.Create(outputFilePath);
                 await stream.CopyToAsync(outputStream);
 
-                Console.WriteLine("Download completed!");
+                Console.WriteLine("\nDownload completed!");
                 Console.WriteLine($"Video saved as: {outputFilePath}");
 
                 await Converter.ConvertMp4ToMp3(outputFilePath, outputDirectory);

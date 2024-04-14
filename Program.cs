@@ -7,7 +7,7 @@ namespace YouTubeConverter
         static string outputDirectory;
         static async Task Main(string[] args)
         {
-
+            Console.Clear();
             bool isFFmpegInstalled = await Converter.CheckFFmpegInstallation();
 
             if (!isFFmpegInstalled)

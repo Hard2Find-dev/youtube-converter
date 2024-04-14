@@ -8,7 +8,7 @@ namespace YouTubeConverter
         {
             try
             {
-                Console.WriteLine("Converting To MP3");                                  
+                Console.WriteLine("Converting To MP3");
                 int bitrate = 320;
 
                 string outputFilePath = Path.Combine(outputDirectory, $"{Path.GetFileNameWithoutExtension(inputFilePath)}.mp3");
@@ -47,7 +47,7 @@ namespace YouTubeConverter
                 process.Start();
 
                 string output = await process.StandardOutput.ReadToEndAsync();
-                process.WaitForExit();
+                process.Close();
 
                 return output.Contains("ffmpeg version");
             }

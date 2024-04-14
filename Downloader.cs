@@ -26,7 +26,7 @@ namespace YouTubeConverter
             {
                 var video = await youtube.Videos.GetAsync(url);
                 Console.WriteLine($"Downloading video: {video.Title}");
-                await Downloader.DownloadYouTubeVideo(url, outputDirectory);
+                await DownloadYouTubeVideo(url, outputDirectory);
                 Console.WriteLine("Video download completed!");
             }
         }
@@ -34,7 +34,6 @@ namespace YouTubeConverter
         {
             var youtube = new YoutubeClient();
             var video = await youtube.Videos.GetAsync(videoUrl);
-            Console.WriteLine($"Downloading {video.Title}");
 
             string sanitizedTitle = string.Join("_", video.Title.Split(Path.GetInvalidFileNameChars()));
 

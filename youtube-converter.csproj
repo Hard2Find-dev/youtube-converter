@@ -8,7 +8,10 @@
     <PublishSingleFile>true</PublishSingleFile>
     <PublishReadyToRun>true</PublishReadyToRun>
     <PublishTrimmed>true</PublishTrimmed>
+    <Icon>icon.ico</Icon>
     <Authors>boucy</Authors>
+    <Company>Boucy Ltd</Company> 
+    <Copyright>Copyright © 2024 Boucy Ltd</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

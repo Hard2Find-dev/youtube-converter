@@ -13,7 +13,7 @@ namespace YouTubeConverter
             {
                 var playlistId = url.Split("list=").Last();
                 var playlist = await youtube.Playlists.GetAsync(playlistId);
-                Console.WriteLine($"Downloading playlist: {playlist.Title}");
+                Console.WriteLine($"Downloading From {playlist.Title} Playlist");
 
                 await foreach (var video in youtube.Playlists.GetVideosAsync(playlistId))
                 {
@@ -35,8 +35,10 @@ namespace YouTubeConverter
             var youtube = new YoutubeClient();
             var video = await youtube.Videos.GetAsync(videoUrl);
 
+
             string sanitizedTitle = string.Join("_", video.Title.Split(Path.GetInvalidFileNameChars()));
 
+            Console.Write($"Downloading {sanitizedTitle}");
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
             var muxedStreams = streamManifest.GetMuxedStreams().OrderByDescending(s => s.VideoQuality).ToList();
 

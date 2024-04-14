@@ -4,9 +4,10 @@ namespace YouTubeConverter
 {
     class Program
     {
+        static string outputDirectory;
         static async Task Main(string[] args)
         {
-            string outputDirectory;
+
             bool isFFmpegInstalled = await Converter.CheckFFmpegInstallation();
 
             if (!isFFmpegInstalled)
@@ -17,27 +18,26 @@ namespace YouTubeConverter
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 string username = Environment.UserName;
-                outputDirectory = $"Download Folder: /home/{username}/Music/";
-                Console.WriteLine(outputDirectory);
+                outputDirectory = $"/home/{username}/Music/";
+                Console.WriteLine("Download Folder: " + outputDirectory);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 string profileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                outputDirectory = Path.Combine("Download Folder: " + profileDirectory, "Music");
-                Console.WriteLine(outputDirectory);
+                outputDirectory = Path.Combine(profileDirectory, "Music");
+                Console.WriteLine("Download Folder: " + outputDirectory);
             }
             else
             {
                 throw new NotSupportedException("Unsupported operating system.");
             }
-            // Specify the path to your .txt file
+
             string filePath = "/usr/local/bin/ascii-Art.txt";
 
-            // Read the contents of the file
             string fileContent = File.ReadAllText(filePath);
+
             while (true)
             {
-
                 Console.Write(fileContent);
                 Console.Write($"Hard2Find Development Company 2024\n");
                 Console.Write("Enter Music Single/Playlist URL (or type 'exit' to quit): ");

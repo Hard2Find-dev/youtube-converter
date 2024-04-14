@@ -31,7 +31,7 @@ namespace YouTubeConverter
                 throw new NotSupportedException("Unsupported operating system.");
             }
             // Specify the path to your .txt file
-            string filePath = "./usr/local/bin/ascii-Art.txt";
+            string filePath = "/usr/local/bin/ascii-Art.txt";
 
             // Read the contents of the file
             string fileContent = File.ReadAllText(filePath);

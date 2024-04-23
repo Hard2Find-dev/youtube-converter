@@ -23,21 +23,6 @@ namespace YouTubeConverter
 
                 process.Start();
 
-                // Read standard output asynchronously
-                Task<string> outputTask = process.StandardOutput.ReadToEndAsync();
-
-                // Read standard error asynchronously
-                Task<string> errorTask = process.StandardError.ReadToEndAsync();
-
-                // Wait for both output and error to complete
-                await Task.WhenAll(outputTask, errorTask);
-
-                // Log output and error
-                Console.WriteLine("FFmpeg output:");
-                Console.WriteLine(outputTask.Result);
-                Console.WriteLine("FFmpeg error:");
-                Console.WriteLine(errorTask.Result);
-
                 await process.WaitForExitAsync();
                 Console.WriteLine("FFmpeg process completed.");
 
@@ -46,10 +31,6 @@ namespace YouTubeConverter
 
                 File.Delete(inputFilePath);
                 Console.WriteLine($"Deleted MP4 file: {inputFilePath}");
-
-                Console.WriteLine("\nPress Enter to continue...");
-                Console.ReadLine();
-                Console.Clear();
             }
             catch (Exception ex)
             {

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace YouTubeConverter
 {
@@ -48,7 +47,7 @@ namespace YouTubeConverter
                 Console.Write("[1] Download Youtube Video MP3\n");
                 Console.Write("[2] Download Youtube Video MP4\n");
                 Console.Write("[3] Edit Metadata For MP3\n");
-                Console.Write("[4] Exit\n\n ");
+                Console.Write("[4] Exit\n\n");
 
                 Console.Write(">> ");
                 string input = Console.ReadLine();

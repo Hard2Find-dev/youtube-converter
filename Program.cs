@@ -33,7 +33,6 @@ namespace YouTubeConverter
             }
             string directory = AppDomain.CurrentDomain.BaseDirectory;
 
-            // Combine the directory with the file name to get the full file path
             string fullPath = Path.Combine(directory, filePath);
             string fileContent = File.ReadAllText(fullPath);
 
@@ -87,6 +86,7 @@ namespace YouTubeConverter
 
                         Console.Write("Enter audio file to edit metadata: ");
                         string audioFilePath = Console.ReadLine();
+
                         string audioFile = $"{outputDirectory}{audioFilePath}";
                         if (File.Exists(audioFile))
                         {
@@ -98,11 +98,10 @@ namespace YouTubeConverter
                             Console.WriteLine("File not found. Please enter a valid file path.");
                         }
                         break;
-
                     case "4":
                         return;
-
                     default:
+                        Console.Clear();
                         Console.WriteLine("Invalid input. Please enter a valid option.");
                         break;
                 }

@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|c:\\users\\boucy\\documents\\projects\\youtuber converter\\youtube-converter.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|solutionrelative:youtube-converter.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|c:\\users\\boucy\\documents\\projects\\youtuber converter\\converter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|solutionrelative:converter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|c:\\users\\boucy\\documents\\projects\\youtuber converter\\downloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|solutionrelative:downloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|c:\\users\\boucy\\documents\\projects\\youtuber converter\\metadata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|solutionrelative:metadata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|c:\\users\\boucy\\documents\\projects\\youtuber converter\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23C0B3C1-1D46-4324-8844-A63C9B9CC430}|youtube-converter.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "youtube-converter",
+              "DocumentMoniker": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\youtube-converter.csproj",
+              "RelativeDocumentMoniker": "youtube-converter.csproj",
+              "ToolTip": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\youtube-converter.csproj",
+              "RelativeToolTip": "youtube-converter.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-26T14:40:16.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Converter.cs",
+              "DocumentMoniker": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Converter.cs",
+              "RelativeDocumentMoniker": "Converter.cs",
+              "ToolTip": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Converter.cs",
+              "RelativeToolTip": "Converter.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T10:24:42.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Downloader.cs",
+              "DocumentMoniker": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Downloader.cs",
+              "RelativeDocumentMoniker": "Downloader.cs",
+              "ToolTip": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Downloader.cs",
+              "RelativeToolTip": "Downloader.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T10:24:41.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Metadata.cs",
+              "DocumentMoniker": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Metadata.cs",
+              "RelativeDocumentMoniker": "Metadata.cs",
+              "ToolTip": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Metadata.cs",
+              "RelativeToolTip": "Metadata.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T10:24:38.949Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Boucy\\Documents\\Projects\\youtuber converter\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAQwFgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T10:24:23.191Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

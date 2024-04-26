@@ -11,8 +11,13 @@
     <Icon>icon.ico</Icon>
     <Authors>boucy</Authors>
     <Company>Boucy Ltd</Company> 
-    <Copyright>Copyright © 2024 Boucy Ltd</Copyright>
+    <Copyright>Copyright © 2024 Boucy Ltd</Copyright> 
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="youtubeexplode" Version="6.3.13" />

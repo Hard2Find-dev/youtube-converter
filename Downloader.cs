@@ -13,10 +13,11 @@ namespace YouTubeConverter
                 var playlistId = url.Split(new[] { "list=", "&" }, StringSplitOptions.RemoveEmptyEntries)[1];
 
                 var playlist = await youtube.Playlists.GetAsync(playlistId);
-
+                Console.WriteLine($"\nDownloading From {playlist.Title} Playlist");
+                
                 await foreach (var video in youtube.Playlists.GetVideosAsync(playlistId))
                 {
-                    Console.WriteLine($"\nDownloading From {playlist.Title} Playlist");
+                  
                     await ConvertToMP3(video.Url, outputDirectory);
                 }
 
@@ -38,11 +39,11 @@ namespace YouTubeConverter
             {
                 var playlistId = url.Split("list=").Last();
                 var playlist = await youtube.Playlists.GetAsync(playlistId);
-
+                Console.WriteLine($"\nDownloading From {playlist.Title} Playlist");
 
                 await foreach (var video in youtube.Playlists.GetVideosAsync(playlistId))
                 {
-                    Console.WriteLine($"\nDownloading From {playlist.Title} Playlist");
+                   
                     await KeepAsMP4(video.Url, outputDirectory);
                 }
 

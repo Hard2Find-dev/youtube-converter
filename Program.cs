@@ -16,21 +16,11 @@ namespace YouTubeConverter
                 Console.WriteLine("FFmpeg is not installed. Please install FFmpeg from the following URL and then restart the application:");
                 Console.WriteLine("https://ffmpeg.org/download.html");
             }
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
 
-                string username = Environment.UserName;
-                outputDirectory = $"/home/{username}/Music/";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                string profileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                outputDirectory = Path.Combine(profileDirectory, "Music");
-            }
-            else
-            {
-                throw new NotSupportedException("Unsupported operating system.");
-            }
+            string profileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            outputDirectory = Path.Combine(profileDirectory, "Music");
+
+
             string directory = AppDomain.CurrentDomain.BaseDirectory;
 
             string fullPath = Path.Combine(directory, filePath);

@@ -7,7 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishReadyToRun>true</PublishReadyToRun>
-    <PublishTrimmed>true</PublishTrimmed>
     <Icon>icon.ico</Icon>
     <Authors>boucy</Authors>
     <Company>Boucy Ltd</Company> 

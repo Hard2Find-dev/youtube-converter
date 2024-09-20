@@ -1,21 +1,17 @@
 ﻿using System.Reflection;
-using System.Net;
-using System.Diagnostics;
 
 namespace YouTubeConverter
 {
     class Program
     {
         static string outputDirectory;
-        static async Task Main(string[] args)
+         static async Task Main(string[] args)
         {
             Console.Clear();
 
-            string currentVersion = "1.0.0"; // Current version of your app
-            string versionUrl = "https://github.com/Hard2Find-dev/youtube-converter/version.txt"; // URL to check the latest version
-            string updateUrl = "https://example.com/YourAppInstaller.exe";
+            
 
-            bool isFFmpegInstalled = await Converter.CheckFFmpegInstallation();
+            bool isFFmpegInstalled= await Converter.CheckFFmpegInstallation();
 
             if (!isFFmpegInstalled)
             {
@@ -39,6 +35,7 @@ namespace YouTubeConverter
                     string content = reader.ReadToEnd();
                     Console.WriteLine(content);  // Output the content of the file
                 }
+                await CheckUpdate();
                 Console.Write($"Download Folder: {outputDirectory}\n");
                 Console.Write($"Hard2Find Development Company 2024\n\n");
 
@@ -106,37 +103,28 @@ namespace YouTubeConverter
                 }
             }
         }
-        void CheckUpdate()
+        static async Task CheckUpdate()
         {
-            string currentVersion = "1.0.0"; // Current version of your app
-            string versionUrl = "https://github.com/Hard2Find-dev/youtube-converter/version.txt"; // URL to check the latest version
-            string updateUrl = "https://example.com/YourAppInstaller.exe"; // URL for the new version installer
+            string currentVersion = "1.0.0";
+            string versionUrl = "https://raw.githubusercontent.com/Hard2Find-dev/youtube-converter/main/version.txt";
 
-            using (var client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    // Fetch the latest version from the server
-                    string latestVersion = client.DownloadString(versionUrl).Trim();
+                    HttpResponseMessage response = await client.GetAsync(versionUrl);
+                    response.EnsureSuccessStatusCode(); 
+                    string latestVersion = await response.Content.ReadAsStringAsync();
 
-                    // Compare the versions
+                    latestVersion = latestVersion.Trim();
+
                     if (latestVersion != currentVersion)
                     {
-                        Console.WriteLine($"New version available: {latestVersion}. Downloading update...");
-
-                        // Download the new installer
-                        string installerPath = Path.Combine(Path.GetTempPath(), "YourAppInstaller.exe");
-                        client.DownloadFile(updateUrl, installerPath);
-
-                        // Run the installer (this will replace the old version)
-                        Process.Start(installerPath);
-
-                        // Optionally close the current application after triggering the update
-                        Environment.Exit(0);
+                        Console.WriteLine($"Version: {currentVersion}. New version available: {latestVersion}\n");
                     }
                     else
                     {
-                        Console.WriteLine("Your app is up-to-date.");
+                        Console.WriteLine($"Version: {currentVersion}\n");
                     }
                 }
                 catch (Exception ex)

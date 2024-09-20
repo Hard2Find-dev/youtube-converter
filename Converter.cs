@@ -21,16 +21,34 @@ namespace YouTubeConverter
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.RedirectStandardError = true;
 
-                process.Start();
+                process.Start();  // Start the process before reading streams
 
+                // Asynchronously read the output and error streams
+                var outputTask = process.StandardOutput.ReadToEndAsync();
+                var errorTask = process.StandardError.ReadToEndAsync();
+
+                // Wait for FFmpeg to finish
                 await process.WaitForExitAsync();
+
+                // Ensure output/error streams are read completely
+                string output = await outputTask;
+                string error = await errorTask;
+
                 Console.WriteLine("FFmpeg process completed.");
+                Console.WriteLine($"FFmpeg Output: {output}");
+                Console.WriteLine($"FFmpeg Error: {error}");
 
-                Console.WriteLine("Conversion completed!");
-                Console.WriteLine($"MP3 saved as: {outputFilePath}");
-
-                File.Delete(inputFilePath);
-                Console.WriteLine($"Deleted MP4 file: {inputFilePath}");
+                if (process.ExitCode == 0)
+                {
+                    Console.WriteLine("Conversion completed!");
+                    Console.WriteLine($"MP3 saved as: {outputFilePath}");
+                    File.Delete(inputFilePath);
+                    Console.WriteLine($"Deleted MP4 file: {inputFilePath}");
+                }
+                else
+                {
+                    Console.WriteLine("FFmpeg encountered an error during conversion.");
+                }
             }
             catch (Exception ex)
             {
@@ -47,10 +65,12 @@ namespace YouTubeConverter
                 process.StartInfo.Arguments = "-version";
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.RedirectStandardOutput = true;
-                process.Start();
+                process.StartInfo.RedirectStandardError = true;
+
+                process.Start();  // Start the process before reading streams
 
                 string output = await process.StandardOutput.ReadToEndAsync();
-                process.Close();
+                process.WaitForExit();
 
                 return output.Contains("ffmpeg version");
             }

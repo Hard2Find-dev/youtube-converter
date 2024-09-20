@@ -4,13 +4,11 @@ namespace YouTubeConverter
 {
     class Program
     {
-        static string outputDirectory;
+        private static readonly string currentVersion = "1.0.1";
+        private static string outputDirectory;
         static async Task Main(string[] args)
         {
             Console.Clear();
-
-
-
             bool isFFmpegInstalled = await Converter.CheckFFmpegInstallation();
 
             if (!isFFmpegInstalled)
@@ -25,7 +23,6 @@ namespace YouTubeConverter
             Assembly assembly = Assembly.GetExecutingAssembly();
             string resource = "youtube-converter.Text.txt";
 
-
             while (true)
             {
 
@@ -33,7 +30,7 @@ namespace YouTubeConverter
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string content = reader.ReadToEnd();
-                    Console.WriteLine(content);  // Output the content of the file
+                    Console.WriteLine(content);
                 }
                 await CheckUpdate();
                 Console.Write($"Download Folder: {outputDirectory}\n");
@@ -41,8 +38,9 @@ namespace YouTubeConverter
 
                 Console.Write("[1] Download Youtube Video MP3\n");
                 Console.Write("[2] Download Youtube Video MP4\n");
-                Console.Write("[3] Edit Metadata For MP3\n");
-                Console.Write("[4] Exit\n\n");
+                Console.Write("[3] Convert MP4 To MP3\n");
+                Console.Write("[4] Edit Metadata For MP3\n");
+                Console.Write("[5] Exit\n\n");
 
                 Console.Write(">> ");
                 string input = Console.ReadLine();
@@ -62,8 +60,15 @@ namespace YouTubeConverter
                         await Downloader.DownloadYouTubeVideoAsMP4(videoUrlMp4, outputDirectory);
                         Console.WriteLine("Download completed!");
                         break;
-
                     case "3":
+                        Console.Write("Enter File Name: ");
+                        string MusicDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                        var dir = Path.Combine(MusicDirectory, "Music");
+
+                        string fileName = Console.ReadLine();
+                        await Converter.ConvertMp4ToMp3($"{dir}/{fileName}.mp4", $"{dir}/");
+                        break;
+                    case "4":
                         Console.WriteLine("Enter metadata details");
                         Console.Write("Name: ");
                         string name = Console.ReadLine();
@@ -94,7 +99,9 @@ namespace YouTubeConverter
                             Console.WriteLine("File not found. Please enter a valid file path.");
                         }
                         break;
-                    case "4":
+                    case "5":
+                        Console.Clear();
+                        Console.WriteLine("Exited Youtube Converter");
                         return;
                     default:
                         Console.Clear();
@@ -105,9 +112,7 @@ namespace YouTubeConverter
         }
         static async Task CheckUpdate()
         {
-            string currentVersion = "1.0.0";
             string versionUrl = "https://raw.githubusercontent.com/Hard2Find-dev/youtube-converter/refs/heads/main/version.txt";
-                               //https://raw.githubusercontent.com/Hard2Find-dev/youtube-converter/refs/heads/main/version.txt
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -116,7 +121,7 @@ namespace YouTubeConverter
                     response.EnsureSuccessStatusCode();
                     string latestVersion = await response.Content.ReadAsStringAsync();
 
-                    latestVersion = latestVersion.Trim();  // Trim to remove any extra spaces, newlines, etc.
+                    latestVersion = latestVersion.Trim();
 
                     // Compare versions
                     if (!string.Equals(currentVersion, latestVersion, StringComparison.OrdinalIgnoreCase))
@@ -134,6 +139,5 @@ namespace YouTubeConverter
                 }
             }
         }
-
     }
 }

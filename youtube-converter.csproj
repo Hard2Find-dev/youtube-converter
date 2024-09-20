@@ -23,10 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Text.txt"/>
+    <EmbeddedResource Include="Text.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GtkSharp" Version="3.24.24.95" />
     <PackageReference Include="youtubeexplode" Version="6.4.1" />
   </ItemGroup>
 </Project>

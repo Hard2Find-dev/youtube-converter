@@ -118,7 +118,7 @@ namespace YouTubeConverter
 
                     latestVersion = latestVersion.Trim();
 
-                    if (latestVersion != currentVersion)
+                    if (currentVersion != latestVersion)
                     {
                         Console.WriteLine($"Version: {currentVersion}. New version available: {latestVersion}\n");
                     }

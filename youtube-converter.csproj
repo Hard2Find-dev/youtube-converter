@@ -15,7 +15,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Text.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Text.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

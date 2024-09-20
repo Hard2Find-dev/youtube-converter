@@ -1,11 +1,11 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace YouTubeConverter
 {
     class Program
     {
         static string outputDirectory; 
-        static readonly string filePath = "./ascii-Art.txt";
         static async Task Main(string[] args)
         {
             Console.Clear();
@@ -20,16 +20,19 @@ namespace YouTubeConverter
             string profileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             outputDirectory = Path.Combine(profileDirectory, "Music");
 
-
-            string directory = AppDomain.CurrentDomain.BaseDirectory;
-
-            string fullPath = Path.Combine(directory, filePath);
-            string fileContent = File.ReadAllText(fullPath);
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string resource = "youtube-converter.Text.txt";
+            
 
             while (true)
             {
 
-                Console.Write(fileContent);
+                using (Stream stream = assembly.GetManifestResourceStream(resource))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string content = reader.ReadToEnd();
+                    Console.WriteLine(content);  // Output the content of the file
+                }
                 Console.Write($"Download Folder: {outputDirectory}\n");
                 Console.Write($"Hard2Find Development Company 2024\n\n");
 

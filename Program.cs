@@ -5,13 +5,13 @@ namespace YouTubeConverter
     class Program
     {
         static string outputDirectory;
-         static async Task Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.Clear();
 
-            
 
-            bool isFFmpegInstalled= await Converter.CheckFFmpegInstallation();
+
+            bool isFFmpegInstalled = await Converter.CheckFFmpegInstallation();
 
             if (!isFFmpegInstalled)
             {
@@ -106,25 +106,26 @@ namespace YouTubeConverter
         static async Task CheckUpdate()
         {
             string currentVersion = "1.0.0";
-            string versionUrl = "https://raw.githubusercontent.com/Hard2Find-dev/youtube-converter/main/version.txt";
-
+            string versionUrl = "https://raw.githubusercontent.com/Hard2Find-dev/youtube-converter/refs/heads/main/version.txt";
+                               //https://raw.githubusercontent.com/Hard2Find-dev/youtube-converter/refs/heads/main/version.txt
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync(versionUrl);
-                    response.EnsureSuccessStatusCode(); 
+                    response.EnsureSuccessStatusCode();
                     string latestVersion = await response.Content.ReadAsStringAsync();
 
-                    latestVersion = latestVersion.Trim();
+                    latestVersion = latestVersion.Trim();  // Trim to remove any extra spaces, newlines, etc.
 
-                    if (currentVersion != latestVersion)
+                    // Compare versions
+                    if (!string.Equals(currentVersion, latestVersion, StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine($"Version: {currentVersion}. New version available: {latestVersion}\n");
                     }
                     else
                     {
-                        Console.WriteLine($"Version: {currentVersion}\n");
+                        Console.WriteLine($"Version: {currentVersion} is up to date.\n");
                     }
                 }
                 catch (Exception ex)
@@ -133,5 +134,6 @@ namespace YouTubeConverter
                 }
             }
         }
+
     }
 }

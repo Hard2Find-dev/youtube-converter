@@ -4,8 +4,8 @@ namespace YouTubeConverter
 {
     class Program
     {
-        static string outputDirectory;
-        static string filePath = "./ascii-Art.txt";
+        static string outputDirectory; 
+        static readonly string filePath = "./ascii-Art.txt";
         static async Task Main(string[] args)
         {
             Console.Clear();
@@ -72,7 +72,7 @@ namespace YouTubeConverter
                         Console.Write("Bitrate: ");
                         int bitrate = Convert.ToInt32(Console.ReadLine());
 
-                        Metadata metadata = new Metadata(name, artist, genre, year, album, bitrate);
+                        Metadata metadata = new(name, artist, genre, year, album, bitrate);
 
                         Console.Write("Enter audio file to edit metadata: ");
                         string audioFilePath = Console.ReadLine();

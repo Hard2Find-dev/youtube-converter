@@ -109,7 +109,7 @@ namespace YouTubeConverter
         void CheckUpdate()
         {
             string currentVersion = "1.0.0"; // Current version of your app
-            string versionUrl = "https://example.com/version.txt"; // URL to check the latest version
+            string versionUrl = "https://github.com/Hard2Find-dev/youtube-converter/version.txt"; // URL to check the latest version
             string updateUrl = "https://example.com/YourAppInstaller.exe"; // URL for the new version installer
 
             using (var client = new WebClient())
